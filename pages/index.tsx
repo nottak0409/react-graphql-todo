@@ -1,21 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { gql, useQuery } from '@apollo/client'
-
-const AllTasksQuery = gql`
-  query {
-    tasks {
-      id
-      title
-      done
-    }
-  }
-`
+import TaskList from '../component/TaskList'
+import { Container, Heading, Stack } from '@chakra-ui/react'
 
 const Home: NextPage = () => {
-  const { data, loading, error} = useQuery(AllTasksQuery)
-  if (loading) return <p>Loading...</p>
-  if (error) return <p>Error: {error.message} </p>
   return (
     <div>
       <Head>
@@ -25,14 +13,12 @@ const Home: NextPage = () => {
       </Head>
 
       <main>
-        <h1>SIMPLE TASK LIST</h1>
-        <ul>
-          {data.tasks.map((task: any) => (
-            <li key={task.id}>
-              <p>{task.title}</p>
-            </li>
-          ))}
-        </ul>
+        <Container my='32px'>
+          <Stack spacing='32px'>
+            <Heading>TaskList</Heading>
+            <TaskList />
+          </Stack>
+        </Container>
       </main>
     </div>  )
 }
