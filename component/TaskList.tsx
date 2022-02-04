@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { Checkbox, List, ListItem } from '@chakra-ui/react'
+import { Checkbox, List, ListItem, Button } from '@chakra-ui/react'
 
 export const AllTasksQuery = gql`
     query {
@@ -21,7 +21,12 @@ const TaskList: React.FC = () => {
             {data.tasks.map(task => (
                 <ListItem key={task.id}>
                     <Checkbox colorScheme={`teal`} isChecked={task.done}>
-                        {task.title}
+                        <span>
+                            {task.title}
+                        </span>
+                        <Button>
+                            削除
+                        </Button>
                     </Checkbox>
                 </ListItem>
             ))}
