@@ -20,14 +20,17 @@ const TaskList: React.FC = () => {
         <List>
             {data.tasks.map(task => (
                 <ListItem key={task.id}>
-                    <Checkbox colorScheme={`teal`} isChecked={task.done}>
-                        <span>
-                            {task.title}
-                        </span>
+                    <div className="flex justify-between w-full space-y-2">
+                        <div className="flex items-center">
+                            <input type="checkbox" checked={task.done}/>
+                            <span className="ml-2 text-lg">
+                                {task.title}
+                            </span>
+                        </div>
                         <Button>
                             削除
                         </Button>
-                    </Checkbox>
+                    </div>
                 </ListItem>
             ))}
         </List>
