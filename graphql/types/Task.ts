@@ -1,5 +1,5 @@
 import { isDefinitionNode } from "graphql";
-import { objectType, extendType, stringArg, nonNull } from "nexus";
+import { objectType, extendType, stringArg, nonNull, intArg } from "nexus";
 
 export const Task = objectType({
   name: "Task",
@@ -34,6 +34,25 @@ export const CreateTaskMutation = extendType({
         return context.prisma.task.create({
           data: {
             title: args.title,
+          },
+        });
+      },
+    });
+  },
+});
+
+export const DeleteTaskMutation = extendType({
+  type: "Mutation",
+  definition(t) {
+    t.nonNull.field("deleteTask", {
+      type: "Task",
+      args: {
+        id: nonNull(intArg()),
+      },
+      resolve(_parent, args, ctx) {
+        return ctx.prisma.task.delete({
+          where: {
+            id: args.id,
           },
         });
       },
