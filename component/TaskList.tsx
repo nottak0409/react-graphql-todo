@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client'
-import { List, ListItem, Button } from '@chakra-ui/react'
+import { List, ListItem } from '@chakra-ui/react'
 import TaskDeleteButton from './TaskDeleteButton'
 
 export const AllTasksQuery = gql`
