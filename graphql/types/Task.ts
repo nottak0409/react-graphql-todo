@@ -59,3 +59,26 @@ export const DeleteTaskMutation = extendType({
     });
   },
 });
+
+export const UpdateTaskMutation = extendType({
+  type: "Mutation",
+  definition(t) {
+    t.nonNull.field("updateTask", {
+      type: "Task",
+      args: {
+        id: nonNull(intArg()),
+      },
+      resolve(_parent, args, context) {
+        return context.prisma.task.update({
+          where: {
+            id: args.id,
+          },
+          data: {
+            title: args.title,
+          },
+        });
+      },
+    });
+  },
+});
+
