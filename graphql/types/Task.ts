@@ -1,4 +1,3 @@
-import { isDefinitionNode } from "graphql";
 import {
   objectType,
   extendType,
