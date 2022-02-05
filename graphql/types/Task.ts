@@ -49,8 +49,8 @@ export const DeleteTaskMutation = extendType({
       args: {
         id: nonNull(intArg()),
       },
-      resolve(_parent, args, ctx) {
-        return ctx.prisma.task.delete({
+      resolve(_parent, args, context) {
+        return context.prisma.task.delete({
           where: {
             id: args.id,
           },
