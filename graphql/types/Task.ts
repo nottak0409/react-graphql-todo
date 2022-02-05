@@ -1,5 +1,12 @@
 import { isDefinitionNode } from "graphql";
-import { objectType, extendType, stringArg, nonNull, intArg } from "nexus";
+import {
+  objectType,
+  extendType,
+  stringArg,
+  nonNull,
+  intArg,
+  booleanArg,
+} from "nexus";
 
 export const Task = objectType({
   name: "Task",
@@ -67,6 +74,8 @@ export const UpdateTaskMutation = extendType({
       type: "Task",
       args: {
         id: nonNull(intArg()),
+        title: nonNull(stringArg()),
+        done: nonNull(booleanArg()),
       },
       resolve(_parent, args, context) {
         return context.prisma.task.update({
@@ -75,6 +84,7 @@ export const UpdateTaskMutation = extendType({
           },
           data: {
             title: args.title,
+            done: args.done,
           },
         });
       },
